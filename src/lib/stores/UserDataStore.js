@@ -18,7 +18,17 @@ export const userDataCollectionFormData=writable({
 })
 
 
-// userDataCollectionFormData.subscribe(value=>{
-//    console.log(value);
+export const loginFormData=writable({
+   username:'',
+   password:''
+})
+
+
+export const currentUser=writable(null)
+
+
+
+currentUser.subscribe(value=>{
+   console.log(value);
    
-// })
+})

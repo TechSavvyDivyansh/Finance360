@@ -12,7 +12,7 @@ export async function POST({request}){
 
     if(existingUser){
         return new Response(
-            JSON.stringify({ error: 'Email already exists. Try logging in.' }),
+            JSON.stringify({ message: 'Email already exists. Try logging in.' }),
             { status: 400, headers: { 'Content-Type': 'application/json' } }
           );
     }

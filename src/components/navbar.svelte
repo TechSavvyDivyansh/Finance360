@@ -10,6 +10,6 @@
     </div>
     <div class="flex gap-4 items-center">
         <a href="/CreateAcc">Create Account</a>
-        <button class="px-4 py-1 rounded-2xl bg-white text-black font-semibold">login</button>
+        <button><a href="/login" class="px-4 py-1 rounded-2xl bg-white text-black font-semibold">login</a></button>
     </div>
 </div>
