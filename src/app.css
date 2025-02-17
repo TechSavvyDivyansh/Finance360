@@ -17,7 +17,7 @@ body {
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb {
-	background: #17381a; /* Scrollbar color */
+	background: #252c26; /* Scrollbar color */
 	border-radius: 5px;
   }
   
