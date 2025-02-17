@@ -18,7 +18,7 @@ export const userDataCollectionFormData=writable({
 })
 
 
-userDataCollectionFormData.subscribe(value=>{
-   console.log(value);
+// userDataCollectionFormData.subscribe(value=>{
+//    console.log(value);
    
-})
+// })

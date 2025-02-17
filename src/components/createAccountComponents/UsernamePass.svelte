@@ -11,7 +11,7 @@
     let errors = {};  // Stores validation errors
     
 
-    const submitForm = () => {
+    const submitForm = async() => {
         const formData = get(userDataCollectionFormData);
 
         // Validate using Zod
@@ -25,7 +25,32 @@
 
         // If validation passes, proceed
         errors = {};  // Clear errors
-        goto("/dashboard")
+
+        try {
+            const UserData=$userDataCollectionFormData
+            const res=await fetch("/api/createAcc",{
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(UserData)
+            })
+            const result = await res.json();
+            console.log(result,res)
+
+            if(res.ok)
+            {
+                goto("/dashboard")
+            }
+
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+
     };
 
 </script>
