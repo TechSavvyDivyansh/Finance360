@@ -1,6 +1,6 @@
 <script>
-    import { basicUserFormData } from '$lib/stores/UserDataStore';
-    import { usernamePassFormData } from '$lib/stores/UserDataStore';
+    // import { userDataCollectionFormData } from '$lib/stores/UserDataStore';
+    import { userDataCollectionFormData } from '$lib/stores/UserDataStore';
     import { get } from 'svelte/store';
     import { userAuthSchema } from '$lib/validations/userDataValidation';
     import FormInput from '../FormInput.svelte';
@@ -9,11 +9,10 @@
 
 
     let errors = {};  // Stores validation errors
-    $:console.log($usernamePassFormData);
     
 
     const submitForm = () => {
-        const formData = get(usernamePassFormData);
+        const formData = get(userDataCollectionFormData);
 
         // Validate using Zod
         const result = userAuthSchema.safeParse(formData);
@@ -26,7 +25,6 @@
 
         // If validation passes, proceed
         errors = {};  // Clear errors
-        console.log("Submitted Data:", formData);
         goto("/dashboard")
     };
 
@@ -39,7 +37,7 @@
             label="username" 
             id="username" 
             placeholder="username" 
-            bind:value={$basicUserFormData.email} 
+            bind:value={$userDataCollectionFormData.email} 
             isDisabled={true}
         />
 
@@ -48,7 +46,7 @@
             id="password"
             type="password" 
             placeholder="Password" 
-            bind:value={$usernamePassFormData.password} 
+            bind:value={$userDataCollectionFormData.password} 
             errors={errors.password || []} 
         />
 
@@ -57,7 +55,7 @@
             id="confirmPassword"
             type="password" 
             placeholder="ConfirmPassword" 
-            bind:value={$usernamePassFormData.confirmPassword} 
+            bind:value={$userDataCollectionFormData.confirmPassword} 
             errors={errors.confirmPassword || []} 
         />
       

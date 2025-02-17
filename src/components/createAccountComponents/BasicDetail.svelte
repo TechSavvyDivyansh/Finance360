@@ -1,5 +1,5 @@
 <script>
-    import { basicUserFormData } from '$lib/stores/UserDataStore';
+    import { userDataCollectionFormData } from '$lib/stores/UserDataStore';
     import { get } from 'svelte/store';
     import { basicUserDataSchema } from '$lib/validations/userDataValidation';
     import FormInput from '../FormInput.svelte';
@@ -8,11 +8,10 @@
 
 
     let errors = {};  // Stores validation errors
-    $:console.log($basicUserFormData);
     
 
     const submitForm = () => {
-        const formData = get(basicUserFormData);
+        const formData = get(userDataCollectionFormData);
 
         // Validate using Zod
         const result = basicUserDataSchema.safeParse(formData);
@@ -25,7 +24,6 @@
 
         // If validation passes, proceed
         errors = {};  // Clear errors
-        console.log("Submitted Data:", formData);
         nextStep(2)
     };
 
@@ -37,7 +35,7 @@
             label="Full Name" 
             id="name" 
             placeholder="Full Name" 
-            bind:value={$basicUserFormData.name} 
+            bind:value={$userDataCollectionFormData.name} 
             errors={errors.name || []} 
         />
 
@@ -47,7 +45,7 @@
             label="Email" 
             id="email" 
             placeholder="Email Address" 
-            bind:value={$basicUserFormData.email} 
+            bind:value={$userDataCollectionFormData.email} 
             errors={errors.email || []} 
         />
 
@@ -55,7 +53,7 @@
             label="Phone Number" 
             id="text" 
             placeholder="Phone Number" 
-            bind:value={$basicUserFormData.phone} 
+            bind:value={$userDataCollectionFormData.phone} 
             errors={errors.phone || []} 
         />
 
@@ -63,7 +61,7 @@
             type="date"
             label="Date of Birth" 
             id="dob" 
-            bind:value={$basicUserFormData.dob} 
+            bind:value={$userDataCollectionFormData.dob} 
             errors={errors.dob || []} 
         />
 

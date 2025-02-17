@@ -1,5 +1,5 @@
 <script>
-    import { incomeFormData } from '$lib/stores/UserDataStore';
+    import { userDataCollectionFormData } from '$lib/stores/UserDataStore';
     import { get } from 'svelte/store';
     import { incomeStatusSchema } from '$lib/validations/userDataValidation';
     import FormInput from '../FormInput.svelte';
@@ -8,11 +8,10 @@
 
 
     let errors = {};  // Stores validation errors
-    $:console.log($incomeFormData);
     
 
     const submitForm = () => {
-        const formData = get(incomeFormData);
+        const formData = get(userDataCollectionFormData);
 
         // Validate using Zod
         const result = incomeStatusSchema.safeParse(formData);
@@ -25,7 +24,6 @@
 
         // If validation passes, proceed
         errors = {};  // Clear errors
-        console.log("Submitted Data:", formData);
         nextStep(3)
     };
 
@@ -38,7 +36,7 @@
             label="PAN Number" 
             id="panNumber" 
             placeholder="PAN Number" 
-            bind:value={$incomeFormData.panNumber} 
+            bind:value={$userDataCollectionFormData.panNumber} 
             errors={errors.panNumber || []} 
         />
 
@@ -48,10 +46,10 @@
             type="radioSelect"
             label="Employment Status"
             id="employmentStatus"
-            value={$incomeFormData.occupationType}
+            value={$userDataCollectionFormData.occupationType}
             options={["Salaried", "Self-employed", "Student", "Unemployed"]}
             errors={errors.occupationType || []}
-            on:update={({ detail }) => $incomeFormData.occupationType = detail.value}
+            on:update={({ detail }) => $userDataCollectionFormData.occupationType = detail.value}
         />
 
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-3 cursor-pointer">Next</button>

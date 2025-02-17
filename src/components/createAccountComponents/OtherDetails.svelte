@@ -1,5 +1,5 @@
 <script>
-    import { otherDetailsFormData } from '$lib/stores/UserDataStore';
+    import { userDataCollectionFormData } from '$lib/stores/UserDataStore';
     import { get } from 'svelte/store';
     import { userOtherDetailSchema } from '$lib/validations/userDataValidation';
 	import FormInput from '../FormInput.svelte';
@@ -8,11 +8,10 @@
 
     let errors = {};  // Stores validation errors
 
-    $:console.log($otherDetailsFormData);
     
 
     const submitForm = () => {
-        const formData = get(otherDetailsFormData);
+        const formData = get(userDataCollectionFormData);
 
         // Validate using Zod
         const result = userOtherDetailSchema.safeParse(formData);
@@ -25,7 +24,6 @@
 
         // If validation passes, proceed
         errors = {};  // Clear errors
-        console.log("Submitted Data:", formData);
         nextStep(2)
     };
 </script>
@@ -46,7 +44,7 @@
             label="Address Line 1" 
             id="addressLine1" 
             placeholder="Address Line 1" 
-            bind:value={$otherDetailsFormData.addressLine1} 
+            bind:value={$userDataCollectionFormData.addressLine1} 
             errors={errors.addressLine1 || []} 
         />
 
@@ -54,7 +52,7 @@
             label="Address Line 2" 
             id="addressLine2" 
             placeholder="Address Line 2" 
-            bind:value={$otherDetailsFormData.addressLine2} 
+            bind:value={$userDataCollectionFormData.addressLine2} 
             errors={errors.addressLine2 || []} 
         />
 
@@ -62,7 +60,7 @@
             label="City" 
             id="city" 
             placeholder="City" 
-            bind:value={$otherDetailsFormData.city} 
+            bind:value={$userDataCollectionFormData.city} 
             errors={errors.city || []} 
         />
 
@@ -70,7 +68,7 @@
             label="State" 
             id="state" 
             placeholder="State" 
-            bind:value={$otherDetailsFormData.state} 
+            bind:value={$userDataCollectionFormData.state} 
             errors={errors.state || []} 
         />
 
@@ -78,7 +76,7 @@
             label="Pincode" 
             id="pincode" 
             placeholder="Pincode" 
-            bind:value={$otherDetailsFormData.pincode} 
+            bind:value={$userDataCollectionFormData.pincode} 
             errors={errors.pincode || []} 
         />
 
