@@ -5,3 +5,23 @@ body {
 	color: #ffffff;
 	overflow-x: hidden;
 }
+
+
+.custom-scrollbar::-webkit-scrollbar {
+	height: 4px; /* Controls the scrollbar thickness */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+	background: #000000; /* Track color */
+	border-radius: 5px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+	background: #17381a; /* Scrollbar color */
+	border-radius: 5px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: #888; /* Darker on hover */
+  }
+  

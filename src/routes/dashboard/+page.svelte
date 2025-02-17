@@ -2,4 +2,4 @@
 
 </script>
 
-<p>hello</p>
+<p></p>
