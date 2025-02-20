@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-
+import { browser } from '$app/environment';
 
 export const userDataCollectionFormData=writable({
    name: '',
@@ -24,10 +24,20 @@ export const loginFormData=writable({
 })
 
 
-export const currentUser=writable(null)
+// export const currentUser=writable(null)
 
 
 
-currentUser.subscribe(value=>{
-   console.log(value);   
+// currentUser.subscribe(value=>{
+//    console.log(value);
+   
+// })
+
+
+export const currentUser=writable(browser && (JSON.parse(localStorage.getItem("currentUser"))))
+
+currentUser.subscribe((val)=>{
+   browser && localStorage.setItem("currentUser",JSON.stringify(val))
+   console.log(val);
+   
 })

@@ -1,7 +1,9 @@
 <script>
 	import BankPopup from "../../../components/BanksComponents/BankPopup.svelte";
     let open=false
-
+    import {currentUser} from '$lib/stores/UserDataStore.js'
+    let user
+    $:user=$currentUser
 </script>
 
 
@@ -12,3 +14,5 @@
 {#if open}
     <BankPopup {open} on:click={()=>{open=false}}/>
 {/if}
+
+<h1>{user.name}</h1>

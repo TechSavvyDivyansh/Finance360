@@ -1,12 +1,13 @@
 <script>
 	import { goto } from "$app/navigation";
+    import {currentUser} from '$lib/stores/UserDataStore.js'
 
     let handleLogout=async()=>{
         try {
             const res = await fetch('/api/logout', { method: 'GET' });
             const result = await res.json();
             console.log(result);
-
+            currentUser.set(null)
             // Redirect to login page after logout
             goto('/login')
         } catch (error) {

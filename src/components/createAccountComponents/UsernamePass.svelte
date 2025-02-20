@@ -40,7 +40,7 @@
 
             if(res.ok)
             {
-                goto("/dashboard")
+                goto("/login")
             }
 
 
