@@ -29,6 +29,5 @@ export const currentUser=writable(null)
 
 
 currentUser.subscribe(value=>{
-   console.log(value);
-   
+   console.log(value);   
 })

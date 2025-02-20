@@ -1,39 +1,37 @@
 <script>
-	import FormInput from "../../components/FormInput.svelte";
-    import {currentUser, loginFormData} from '$lib/stores/UserDataStore.js'
-	import { goto } from "$app/navigation";
+    import FormInput from "../../components/FormInput.svelte";
+    import { currentUser, loginFormData } from '$lib/stores/UserDataStore.js';
+    import { goto } from "$app/navigation";
+    import { get } from 'svelte/store';  
 
+    let handleLoginSubmit = async (event) => {
+        event.preventDefault();  
 
-    let handleLoginSubmit=async()=>{
         try {
-            const loginData=$loginFormData
-            const res=await fetch('/api/login',{
-                method:'POST',
-                headers:{
-                    'content-type':'application/json'
+            const loginData = get(loginFormData);  
+
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
                 },
-                body:JSON.stringify(loginData)
-            })
+                body: JSON.stringify(loginData)
+            });
 
-            const result=await res.json()
-            console.log(result);
-            
-            if(res.ok)
-            {
-                document.cookie = `userData=${JSON.stringify(result.userData)}; path=/; max-age=${7 * 24 * 60 * 60}`;
-                currentUser.set(result.userData)
-                goto('/dashboard')
-            }
-            else
-            {
+            const result = await res.json();
+            console.log("Login Response:", result);
 
+            if (res.ok) {
+                currentUser.set(result.CurrentUser);  
+                goto('/dashboard');
+            } else {
+                console.error("Login failed:", result.error || result.message);
             }
-            
+
         } catch (error) {
-            
+            console.error("Error during login:", error);
         }
-    }
-
+    };
 </script>
 
 

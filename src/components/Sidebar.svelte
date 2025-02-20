@@ -1,5 +1,18 @@
 <script>
+	import { goto } from "$app/navigation";
 
+    let handleLogout=async()=>{
+        try {
+            const res = await fetch('/api/logout', { method: 'GET' });
+            const result = await res.json();
+            console.log(result);
+
+            // Redirect to login page after logout
+            goto('/login')
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
+    }
 </script>
 
 
@@ -12,5 +25,5 @@
         <a href="/" class="text-xl">Stocks</a>
         <a href="/" class="text-xl">Investments</a>
     </div>
-    <div class="text-xl">logout</div>
+    <button class="text-xl"  on:click={handleLogout}>logout</button>
 </div>
